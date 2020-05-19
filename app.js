@@ -33,12 +33,12 @@ app.use(cookieSession({
 
 // routers
 app.use('/', indexRouter);
-app.use('/logout', logoutRouter);
-app.use('/sign-up', signUpRouter);
-app.use('/topic/:topicId', topicRouter);
+app.use('/', logoutRouter);
+app.use('/', signUpRouter);
+app.use('/', topicRouter);
 // internal routes
-app.use('/login-form', internalLoginRouter);
-app.use('/create-account-form', internalSignUpRouter);
+app.use('/', internalLoginRouter);
+app.use('/', internalSignUpRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
