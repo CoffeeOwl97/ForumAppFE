@@ -1,0 +1,30 @@
+extends layout
+
+block layout-content
+    nav.navbar.navbar-dark.bg-dark
+        a.navbar-brand(href="/") Forum
+
+        if user.isLoggedIn
+            a.btn.btn-outline-success.m-2#btnLogout(href="/logout") Logout
+
+        else
+            form.form-inline(method='POST' action='/login-form')
+                input.form-control.mr-sm-2#txtUser(type='text' placeholder='Username' name='Username')
+                input.form-control.mr-sm-2#txtPass(type='password' placeholder='Password' name='Password')
+                button.btn.btn-outline-success.m-2#btnLogin(type="submit") Login
+                a.btn.btn-outline-success.m-2#btnSignUp(href="/sign-up" type="button") Sign Up!
+
+
+    if error
+        div.alert.alert-danger.alert-dismissible#alertMesage
+            a.close(href='#' data-dismiss='alert' aria-label='close') &times;
+            strong Error!
+            |  #{error}
+
+    ul.m-4
+        each topic, index in topics
+            div.card.m-2
+                div.card-body
+                    h5.card-title #{topic.topicName}
+                    footer.blockquote-footer #{usernames[index]}
+                    a.btn.btn-primary(href='/topic/'+topic.topicId) View Topic

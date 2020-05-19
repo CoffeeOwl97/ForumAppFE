@@ -1,0 +1,33 @@
+extends layout
+
+block layout-content
+    nav.navbar.navbar-dark.bg-dark
+        a.navbar-brand(href="/") Forum
+        a.btn.btn-outline-success.m-2#btnLogout(href="/logout") Logout
+
+    if error
+        div.alert.alert-danger.alert-dismissible#alertMesage
+            a.close(href='#' data-dismiss='alert' aria-label='close') &times;
+            strong Error!
+            |  #{error}
+
+    div.card.m-4
+        div.card-body
+            h5.card-title #{topicName}
+
+    div.m-5
+        ul.m-4
+            each post, index in posts
+                if post.postImage === null
+                    div.card.m-4
+                        div.card-body
+                            p #{post.postText}
+                            footer.blockquote-footer #{usernames[index]}
+                else
+                    div.card.m-4
+                        div.card-body
+                            img.card-img-top(src=post.postImage async=true)
+                            p #{post.postText}
+                            footer.blockquote-footer #{usernames[index]}
+
+
