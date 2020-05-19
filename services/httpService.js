@@ -1,13 +1,13 @@
 const axios = require("axios");
 const cookieService = require("./cookieService");
 
-const forumBEHost = process.env.BESERVICE || "http://localhost";
-const forumBEPort = process.env.BEPORT || "9099";
+const forumBEHost = process.env.BESERVICE || "http://localhost:9099";
+
 
 const login = (req, res, data) => {
     axios({
         method: 'post',
-        url: forumBEHost + ':' + forumBEPort + '/auth/login',
+        url: forumBEHost + '/auth/login',
         data: {
             username: data.username,
             password: data.password
@@ -42,7 +42,7 @@ const login = (req, res, data) => {
 const logout = (req, res) => {
     axios({
         method: 'post',
-        url: forumBEHost + ':' + forumBEPort + '/auth/logout',
+        url: forumBEHost + '/auth/logout',
         headers: {authorization: cookieService.getAuthCookie(req)},
         data: {}
     })
@@ -61,7 +61,7 @@ const logout = (req, res) => {
 const createAccount = (req, res, data) => {
     axios({
         method: 'post',
-        url: forumBEHost + ':' + forumBEPort + '/auth/sign-up',
+        url: forumBEHost + '/auth/sign-up',
         data: {
             username: data.username,
             password: data.password
@@ -90,7 +90,7 @@ const getTopics = (req, res) => {
     const authToken = cookieService.getAuthCookie(req);
     return axios({
         method: 'GET',
-        url: forumBEHost + ':' + forumBEPort + '/retrieve-topics',
+        url: forumBEHost + '/retrieve-topics',
         headers: {authorization: authToken},
         data: {}
     })
@@ -106,7 +106,7 @@ const getNamesFromIds = (req, res, idArray) => {
     const authToken = cookieService.getAuthCookie(req);
     return axios({
         method: 'POST',
-        url: forumBEHost + ':' + forumBEPort + '/retrieve-users-from-ids',
+        url: forumBEHost + '/retrieve-users-from-ids',
         headers: {authorization: authToken},
         data: idArray
     })
@@ -122,7 +122,7 @@ const getPostsForTopic = (req, res, topidId) => {
     const authToken = cookieService.getAuthCookie(req);
     return axios({
         method: 'GET',
-        url: forumBEHost + ':' + forumBEPort + '/retrieve-posts/' + topidId,
+        url: forumBEHost + '/retrieve-posts/' + topidId,
         headers: {authorization: authToken},
         data: {}
     })
@@ -138,7 +138,7 @@ const getTopic = (req, res, topidId) => {
     const authToken = cookieService.getAuthCookie(req);
     return axios({
         method: 'GET',
-        url: forumBEHost + ':' + forumBEPort + '/retrieve-topic/' + topidId,
+        url: forumBEHost + '/retrieve-topic/' + topidId,
         headers: {authorization: authToken},
         data: {}
     })
