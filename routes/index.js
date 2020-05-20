@@ -21,7 +21,15 @@ router.get("/", (req, res) => {
           usernames: userNamesArray
         })
       })
-    })
+    }).catch(
+        res.render("index",{
+          user: {
+            isLoggedIn:false
+          },
+          topics: {},
+          usernames: {},
+          error: "something went wrong!"
+        }))
   } else {
     httpService.getTopics(req, res).then(response => {
       let topics = response.data.topic;
@@ -38,7 +46,15 @@ router.get("/", (req, res) => {
           usernames: userNamesArray
         })
       })
-    })
+    }).catch(
+        res.render("index",{
+          user: {
+            isLoggedIn:false
+          },
+          topics: {},
+          usernames: {},
+          error: "something went wrong!"
+        }))
   }
 });
 
