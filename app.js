@@ -8,8 +8,11 @@ const indexRouter = require('./routes/index');
 const logoutRouter = require('./routes/logout');
 const signUpRouter = require('./routes/signup');
 const topicRouter = require('./routes/topic');
+const createTopicRouter = require('./routes/createTopic');
 const internalLoginRouter = require('./routes/internal/login-form');
 const internalSignUpRouter = require('./routes/internal/create-account-form');
+const internalCreateTopicRouter = require('./routes/internal/create-topic-form');
+const internalCreatePostRouter = require('./routes/internal/create-post-form');
 
 const app = express();
 
@@ -36,9 +39,12 @@ app.use('/', indexRouter);
 app.use('/', logoutRouter);
 app.use('/', signUpRouter);
 app.use('/', topicRouter);
+app.use('/', createTopicRouter);
 // internal routes
 app.use('/', internalLoginRouter);
 app.use('/', internalSignUpRouter);
+app.use('/', internalCreateTopicRouter);
+app.use('/topic', internalCreatePostRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

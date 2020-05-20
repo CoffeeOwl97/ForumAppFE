@@ -22,10 +22,11 @@ block layout-content
             |  #{error}
 
     if user.isLoggedIn
-        ul.m-4
-            each topic, index in topics
-                div.card.m-2
-                    div.card-body
-                        h5.card-title #{topic.topicName}
-                        footer.blockquote-footer #{usernames[index]}
-                        a.btn.btn-primary(href='/topic/'+topic.topicId) View Topic
+        a.btn.btn-outline-success.m-2#btnCreateTopic(href="/create-topic" type="button") Create a new topic!
+    ul.m-4
+        each topic, index in topics
+            div.card.m-2
+                div.card-body
+                    h5.card-title #{topic.topicName}
+                    footer.blockquote-footer #{usernames[index]}
+                    a.btn.btn-primary(href='/topic/'+topic.topicId) View Topic

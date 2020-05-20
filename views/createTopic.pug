@@ -1,0 +1,21 @@
+extends layout
+
+block layout-content
+    nav.navbar.navbar-dark.bg-dark
+        a.navbar-brand(href="/") Forum
+        a.btn.btn-outline-success.m-2#btnLogout(href="/logout") Logout
+
+    if error
+        div.alert.alert-danger.alert-dismissible#alertMesage
+            a.close(href='#' data-dismiss='alert' aria-label='close') &times;
+            strong Error!
+            |  #{error}
+
+    form(method='POST' action='/create-topic-form')
+        .form-group
+            label(for='InputTopicText') Topic Name
+            input#InputTopicText.form-control(type='text' placeholder="Topic Name" name='TopicName' value = topicNameInput)
+        .form-group
+            label(for='InputPostText') Text
+            input#InputPostText.form-control(type='text' placeholder="Text" name='TopicPostText' value = topicPostText)
+        button.btn.btn-primary(type='submit') Post

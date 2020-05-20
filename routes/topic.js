@@ -1,3 +1,4 @@
+const cookieService = require("../services/cookieService");
 const httpService = require('../services/httpService');
 
 const express = require('express');
@@ -14,7 +15,10 @@ router.get("/topic/:topicId", (req, res) => {
                 res.render("topic", {
                     posts,
                     usernames: userNamesArray,
-                    topicName
+                    topicName,
+                    user: {
+                        isLoggedIn: !(cookieService.getAuthCookie(req, res) === "null" || cookieService.getAuthCookie(req, res) === null)
+                    },
                 })
             })
 

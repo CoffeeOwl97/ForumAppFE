@@ -31,3 +31,16 @@ block layout-content
                             footer.blockquote-footer #{usernames[index]}
 
 
+    if user.isLoggedIn
+        div.m-5
+            div.m-5
+                div.card.m-5
+                    div
+                        strong Add post
+                        .card-body
+                            form.text-center(method='POST' action='create-post-form/' + posts[0].topicId)
+                                div.form-group
+                                    input#postText.form-control(type='text' name='postText' placeholder="Text")
+                                button.btn.btn-primary(type='submit') Post
+
+
