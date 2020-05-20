@@ -21,10 +21,11 @@ block layout-content
             strong Error!
             |  #{error}
 
-    ul.m-4
-        each topic, index in topics
-            div.card.m-2
-                div.card-body
-                    h5.card-title #{topic.topicName}
-                    footer.blockquote-footer #{usernames[index]}
-                    a.btn.btn-primary(href='/topic/'+topic.topicId) View Topic
+    if user.isLoggedIn
+        ul.m-4
+            each topic, index in topics
+                div.card.m-2
+                    div.card-body
+                        h5.card-title #{topic.topicName}
+                        footer.blockquote-footer #{usernames[index]}
+                        a.btn.btn-primary(href='/topic/'+topic.topicId) View Topic

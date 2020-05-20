@@ -1,7 +1,7 @@
 const axios = require("axios");
 const cookieService = require("./cookieService");
 
-const forumBEHost = process.env.BESERVICE || "http://localhost:9099";
+const forumBEHost = "http://forumbe-env-1.eba-dzauvukx.us-east-1.elasticbeanstalk.com/";
 
 
 const login = (req, res, data) => {
@@ -16,7 +16,7 @@ const login = (req, res, data) => {
         .then(function (response) {
             console.log("Login Successful");
             console.log(response.status);
-            cookieService.setAuthCookie(req, res, response.headers.authorization)
+            cookieService.setAuthCookie(req, res, response.headers.authorization);
             res.redirect("/");
         })
         .catch(function (error) {
